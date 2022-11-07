@@ -266,13 +266,14 @@ function formSubmit(el, type, action) {
     $.post( "admin/handlers/" + action + "_" + type + ".php", { 
         formData: jsonData,
         id: $id
-     }).done(function(data) {
-        alert(data);
-        
-        // if ( data == "1") {
-        //     alert("Ændringerne er gemt");
-        // } else {
-        //     alert("Ups! Noget gik galt.");
-        // }
+     }).done(function(data) {        
+
+        if ( data == "1") {
+            alert(data);
+            alert("Ændringerne er gemt");
+        } else {
+            alert(data);
+            alert("Ups! Noget gik galt.");
+        }
     });
 }
