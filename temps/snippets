@@ -1,0 +1,4 @@
+ALTER TABLE books
+    ADD CONSTRAINT books_FK_1
+    FOREIGN KEY (created_by)
+    REFERENCES users(id);

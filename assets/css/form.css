@@ -1,0 +1,103 @@
+
+    
+.form_wrapper{
+    min-height: 800px;
+    padding: 2%;
+}
+
+.form, .dropBox{
+    background: -webkit-linear-gradient(bottom, #9b2201, #b2634e 175px);
+    background: -moz-linear-gradient(bottom, #9b2201, #b2634e 175px);
+    background: linear-gradient(bottom,#9b2201, #b2634e 175px);
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 60%;
+    text-align: center;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #999;
+    border: inset 1px solid #333;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+.form_h1{
+    margin: 30px 0;
+    font-family: 'Righteous', cursive;
+    font-weight: 500!important;
+}
+
+.form input, #type{
+    padding: 10px;
+    margin:  20px;
+    width: 70%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.checkbox{
+    width: 20px!important;
+}
+.form{
+    padding: 15px;
+}
+.form input{
+    margin: 3%
+}
+.submit_add_car{
+    background: -webkit-linear-gradient(bottom, #E3F6C2,#5B9105 175px);
+    background: -moz-linear-gradient(bottom, #E3F6C2, #5B9105 175px);
+    background: linear-gradient(bottom,#E3F6C2, #5B9105 175px);    
+}
+.submit{  
+    background: -webkit-linear-gradient(bottom, #ddd,#fff 175px);
+    background: -moz-linear-gradient(bottom, #ddd, #fff 175px);
+    background: linear-gradient(bottom,#ddd, #fff 175px); 
+    color:#000; 
+}
+.form.input{
+    margin: 0;
+    background-color: red;
+}
+.form a:hover{
+    color: #000!important;
+}
+
+@media only screen and (max-width : 979px) {
+
+    .form{
+        width: 80%;
+        margin: 10% auto
+    }
+}
+@media only screen and (max-width : 668px) {
+
+    .form{
+        width: 90%;
+        margin: 90px auto
+    }
+    .form h1{
+        font-size: 20px;
+        margin: 15px;
+    }
+    .form input{
+        margin: 10px;
+        padding: 8px;
+    }
+}
+@media only screen and (max-width : 480px) {
+
+    .form{
+        width: 100%;
+        margin: 90px auto;
+        padding-bottom: 150px;
+        padding-left: 0;
+    }
+
+
+}
