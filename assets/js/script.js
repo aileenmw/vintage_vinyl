@@ -268,6 +268,7 @@ function formSubmit(el, type, action) {
         id: $id
      }).done(function(data) {
         alert(data);
+        
         // if ( data == "1") {
         //     alert("Ændringerne er gemt");
         // } else {
