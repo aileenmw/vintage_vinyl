@@ -51,7 +51,7 @@
         ?>
         </div>
         <div class="form-group">
-            <input type="number" class="form-control" id="e_genre" name="genre" hidden>
+            <input type="number" class="form-control" id="e_genre" name="genre"  hidden>
             <input type="text" id="e_genre_display" placeholder="<?=$recordGenreName?>"  disabled>
         </div>        
         </div>

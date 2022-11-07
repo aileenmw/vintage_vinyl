@@ -15,8 +15,12 @@
             <tr>
             <?php
                 foreach ($objects[0] as $key=>$value) {
-                    echo "<th>" . $key . "</th>";
-                    echo "<th></th>";
+                    if ($key == "pWord") {
+
+                    } else {
+                        echo "<th>" . $key . "</th>";
+                        echo "<th></th>";
+                    }
                 }            
                 echo "<th></th><th></th>";
             ?>
@@ -29,6 +33,7 @@
                         foreach ($obj as $key=>$value) {
                             if ($key == "text") {
                                 echo "<td class='cell overflow'>" . substr($value, 0, 30) . "<td/>";
+                            } elseif ($key == "pWord") {
                             } else {
                                echo "<td class='cell'>" . $value . "<td/>";
                             }

@@ -9,6 +9,10 @@ if (isset($_POST['submit'])) {
     if (empty($username) || empty($password)) {
        $message = 'Ufyld venligst alle felter'; 
     } else {
+        // get password for username and check
+        // $verify = password_verify($plaintext_password, $hash);
+        // https://www.geeksforgeeks.org/how-to-encrypt-and-decrypt-passwords-using-php/
+
         $loginReturn = DB::login( $username, $password);
         if ($loginReturn == 0) {
             $message = "Brugeren findes ikke.<br> 

@@ -11,9 +11,11 @@ if ( isset($_POST['submit'])) {
     $uName = $_POST['uname'] ?? "" ;
     $email = $_POST['email'] ?? "" ;
     $pw = $_POST['password'] ?? "" ;
+    $roleId = $_POST['role_id'] ?? 3;
 
     if ( empty(DB::selectByParam('users', $values, 'userName',  $_POST['uname']))) {
-       if (User::createUser($fName, $lName, $uName, $pw, $email)) {
+        $pw = password_hash($pw, PASSWORD_DEFAULT);
+       if (User::createUser($fName, $lName, $uName, $pw, $email, $roleId)) {
         $_POST = array();
         ?>
         <script>

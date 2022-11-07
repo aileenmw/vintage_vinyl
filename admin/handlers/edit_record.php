@@ -5,7 +5,7 @@
  
     $imgErr = "";
     $res = 0;
-
+    
     if(count($_POST) > 0) {
 
         $id = $_POST['id'];
@@ -31,9 +31,9 @@
         } else {
 
         $recordUpdate[] = $_POST["title"] ? "title='" . $_POST["title"] . "'" : null;
-        $recordUpdate[] =  $_POST["artist"] ? "artist='" . $_POST["artist"] . "'" : null;
+        $recordUpdate[] = $_POST["artist"] ? "artist='" . $_POST["artist"] . "'" : null;
         $recordUpdate[] = $_POST["description"] ? "description='" . $_POST["description"] . "'" : null;
-        
+        $recordUpdate[] = $genre_id ? "genre_id=" . $genre_id : null;
         $recordUpdate[] = $_POST["price"] ? "price=" . $_POST["price"] : null; 
         $recordUpdate[] = $_POST["year"] ? "year=" . $_POST["year"] : null; 
         $recordUpdate[] = $imgName ? "img='" . $imgName ."'" : null; 
@@ -41,7 +41,7 @@
 
         $recordUpdate = array_filter($recordUpdate);
         $updateStr = implode(",", $recordUpdate);
-    
+
         if($updateStr != "" ) {
             $res = DB::updateItem("records", $id, $updateStr);
         }
