@@ -261,19 +261,16 @@ function formSubmit(el, type, action) {
     var formInput = $(form).serializeArray();
     var jsonData = JSON.stringify(formInput);
 
-    alert(jsonData);
-
     $.post( "admin/handlers/" + action + "_" + type + ".php", { 
         formData: jsonData,
         id: $id
      }).done(function(data) {        
 
         if ( data == "1") {
-            alert(data);
             alert("Ændringerne er gemt");
         } else {
-            alert(data);
             alert("Ups! Noget gik galt.");
         }
     });
 }
+

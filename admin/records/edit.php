@@ -15,9 +15,10 @@
         }
     
    ?>
-   <form method="post" action="" class="edit_form">
+   <form id="data" method="post" action="admin/handlers/edit_record.php" enctype="multipart/form-data" class="edit_form">
     <h3>Opdatér LP</h3>
     <p onclick="closeFormOverlay(this)" class="overlayFormBtn" id="edit_records_btn">X</p>
+        <input hidden type="text" name="id" value="<?=$record->id?>">
         <div class="form-group" id="c_title">
             <label>Title</label>
             <input type="text" class="form-control" name="title" placeholder="<?=$record->title?>">
@@ -64,16 +65,18 @@
         </div>
         <div class="form-group">
             <label>Upload image</label>
-            <input type="file" name="img" value="" />
+            <input type="file" name="fileToUpload" value="" />
         </div>
         <div class="form-group">
             <label>Amount</label>
             <input type="number" class="form-control" name="amount" placeholder="<?=$record->amount?>">
         </div>
-        <button type="submit" onclick="formSubmit(this,'records','edit')" id="<?=$id?>" class="btn btn-primary">Submit</button>
+        <button type="submit"   id="<?=$id?>" class="btn btn-primary">Submit</button>
     </form>
     <?php
         } else {
             echo "<h4>Something went wrong</h4>";
         }
     ?>
+
+<!-- onclick="formSubmit(this,'records','edit')" -->

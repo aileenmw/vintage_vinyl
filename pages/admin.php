@@ -6,15 +6,15 @@
     if ( $recordReturn == 1) {
         $icon =  "success";
         $title = "Success";
-        $text =  "LP\'en er tilføjet";
+        $text =  "LP tabellen er opdateret";
     } else if($imgUploadErrors != "") {
         $icon =  "error";
-        $title = "LP\'en er ikke gemt";
+        $title = "LP tabellen er IKKE opdateret";
         $text =  Image::$errorArr[(int)$imgUploadErrors];
     } else {
         $icon =  "error";
         $title = "Noget gik galt";
-        $text =  "LP\'en er ikke gemt";
+        $text =  "LP tabellen er IKKE opdateret";
     } 
     ?>
     <script>
