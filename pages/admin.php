@@ -50,7 +50,7 @@
     
     <h2>Bruger administration</h2><br>
     <div class="admin_btn_wrapper">
-        <button type="button" onclick="toggleTable(this)" action="display_users" class="btn lp_btn btn-dark">Vis brugere</button>
+        <button type="button" onclick="toggleTable(this)" action="display_users" class="btn lp_btn btn-dark">Vis og redigér brugere</button>
         <button type="button" onclick="toggleTable(this)" action="create_users" class="btn lp_btn btn-success">Opret bruger</button>
     </div> 
     <div class="noDisplay" id="display_users"></div>
@@ -63,7 +63,7 @@
 
     <h2>Genre administration</h2><br>
     <div class="admin_btn_wrapper">
-        <button type="button" onclick="toggleTable(this)" action="display_genres" class="btn lp_btn btn-dark">Vis Genrer</button>
+        <button type="button" onclick="toggleTable(this)" action="display_genres" class="btn lp_btn btn-dark">Vis og redigér Genrer</button>
         <button type="button" onclick="toggleTable(this)" action="create_genres" class="btn lp_btn btn-success">Opret Genre</button>
     </div> 
     <div class="noDisplay" id="display_genres"></div>

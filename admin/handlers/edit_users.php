@@ -9,31 +9,37 @@ spl_autoload_register(function ($class_name) {
 
     $fName = $formArr[0]->value ?? "";
     $lName = $formArr[1]->value ?? "";
-    $email = $formArr[2]->value ?? "";
-    $role_id = $formArr[3]->value ?? "";
+    $uName = $formArr[2]->value ?? "";
+    $pw = $formArr[3]->value;
+    $pWord =  password_hash($pw, PASSWORD_DEFAULT) ?? "";
+    $email = $formArr[4]->value ?? "";
+    $role_id = $formArr[5]->value ?? "";
 
-     $genreUpdate = 0;
+    $genreUpdate = 0;
     
   
         $set1 = $fName ? "`fName`='" . $fName . "'" : null;
         $set2 = $lName ?"`lName`='" . $lName . "'" : null;
-        $set3 = $email ? "`email`='" . $email . "'" : null;        
-        $set4 = $role_id ? "`role_id`=" . $role_id : "`role_id`=" . 3;
+        $set3 = $uName ? "`userName`='" . $uName . "'" : null; 
+        $set4 = $pWord ? "`pWord`='" . $pWord . "'" : null;     
+        $set5 = $email ? "`email`='" . $email . "'" : null;    
+        $set6 = $role_id ? "`role_id`=" . $role_id : null;
 
-    $setArr = array($set1, $set2, $set3, $set4);
+    $setArr = array($set1, $set2, $set3, $set4, $set5, $set6);
+    $setArr = array_filter($setArr);
     $udateString = "";
 
-    for ( $i = 0; $i < count($setArr); $i++) {
+    foreach ($setArr as $set) {
         if ($udateString != "") {
-            $udateString .=  ", " . $setArr[$i];
+            $udateString .=  ", " . $set;
         } else {
-            $udateString .=  $setArr[$i];
+            $udateString .=  $set;
         }
     }
 
-     $genreUpdate = DB::updateItem('users', intval($id), $udateString);
-    
+    if (DB::updateItem('users', intval($id), $udateString)) {
+        $genreUpdate = 1;
+    }
     
     echo $genreUpdate;
-
 ?>

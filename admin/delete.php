@@ -6,11 +6,12 @@
     $table = $_POST["table"] ?? null;
     $id = $_POST["id"] ?? null;
 
-    if ( DB::deleteItem($table, "id", $id)) {
-        $res = 1;
-    } else {
-        $res = 0;
-    }
+    // if ( DB::deleteItem($table, "id", $id)) {
+    //     $res = 1;
+    // } else {
+    //     $res = 0;
+    // }
 
-    echo $res;
+    echo DB::deleteItem($table, "id", $id);
+    // echo $res;
 ?>

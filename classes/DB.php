@@ -74,11 +74,14 @@ class DB {
         }
 
         public static function updateItem( string $table, int $id, string $updateString) {
-            $sql = "UPDATE $table SET $updateString WHERE id=?";
+            $res = 0;
 
+            $sql = "UPDATE $table SET $updateString WHERE id=?";
             $pdo = DB::pdo_connect();
             $stmt = $pdo->prepare($sql);
-            $res = $stmt->execute([$id]);
+            if ($stmt->execute([$id])) {
+                $res = 1;
+            }
 
             $pdo = null;
             
@@ -87,16 +90,58 @@ class DB {
 
         public static function deleteItem ( $table, $param, $value) {
 
-            $outcome = 0;
-            $sql = "DELETE FROM $table WHERE $param=?";
-            $pdo = DB::pdo_connect();
-            $stmt = $pdo->prepare($sql);
-            $res = $stmt->execute([$value]);
+            $handleCarts = $table == 'users' ? 0 : 1;
 
-            if ($res) {
-                $outcome = 1;
-            } 
-            return $outcome;
+            if($table == 'users') {
+                $carts = DB::selectByParam('carts', 'id', 'user_id', $value); 
+                if (count($carts) > 0) {
+                    $i = 0;
+                    $where = "";
+                    $id = intval($value);
+                    foreach ($carts as $cart) {
+                        if ( $i > 0) {
+                            $where .= ' OR cart_id=' . $cart->id;
+                        } else {
+                            $where .= 'cart_id=' . $cart->id;
+                        }
+                        $i++;
+                    }
+
+                    $sql1 = "DELETE FROM cart_items WHERE " . $where;     
+                    //return $sql1;               
+                    $pdo = DB::pdo_connect();
+                    $stmt1 = $pdo->prepare($sql1);
+                    $itemsDeleted = $stmt1->execute();
+
+                    if ($itemsDeleted) {
+                        $sql2 = "DELETE FROM carts WHERE user_id=?";
+                        $stmt2 = $pdo->prepare($sql2);
+                        if($stmt2->execute([$id])) {
+                            $handleCarts = 1;
+                        }
+                        
+                    } 
+                }else {
+                    $handleCarts = 1;
+                }
+                $pdo = null;
+            }
+
+            if ($handleCarts == 1) {
+
+                $outcome = 0;
+                $sql = "DELETE FROM $table WHERE $param=?";
+                $pdo = DB::pdo_connect();
+                $stmt = $pdo->prepare($sql);
+                $res = $stmt->execute([$value]);
+
+                if ($res) {
+                    $outcome = 1;
+                } 
+                $pdo = null;
+                
+                return $outcome;
+            }
         }
 
     //check login
@@ -116,23 +161,32 @@ class DB {
         $objects = $stmt->fetchAll();
 
         if (count($objects) > 0) {
-                foreach ($objects as $obj) {
-                    if ($obj->pWord == $pw) {
-                        $loginOK = 1;
-                    } else {
-                        $loginOK = 2;
-                    }
-                }
-        } 
-            // $db_password = $user->password;
-            // $valid = password_verify($password, $db_password);
-                if ($loginOK == 1) {
-                    // opret session & redirect
-                    $_SESSION['logged'] = true;
-                    $_SESSION['role'] = $obj->role;
-                    $_SESSION['username'] = $obj->userName;
-                    $_SESSION['user_id'] = $obj->id;
-                }
+            $obj = end($objects);
+            if (password_verify($pw, $obj->pWord)) {
+                $loginOK = 1;
+            } else {
+                $loginOK = 2;
+            }
+        }
+        /*/////login without encrypted pw/////////*/
+        // if (count($objects) > 0) {
+        //         foreach ($objects as $obj) {
+        //             if ($obj->pWord == $pw) {
+        //                 $loginOK = 1;
+        //             } else {
+        //                 $loginOK = 2;
+        //             }
+        //         }
+        // } 
+        $pdo = null;
+
+        if ($loginOK == 1) {
+            // opret session & redirect
+            $_SESSION['logged'] = true;
+            $_SESSION['role'] = $obj->role;
+            $_SESSION['username'] = $obj->userName;
+            $_SESSION['user_id'] = $obj->id;
+        }
 
         return $loginOK;
     }

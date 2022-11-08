@@ -65,36 +65,31 @@
                     <a id="logout">
                         <li>Logout</li>
                     </a>
-                <?php
+                    <?php
+                    if($role == "admin") {
+                        ?>
+                        <a id="admin" href="index.php?page=admin">
+                            <li>Administration</li>
+                        </a>
+                        <?php
+                    }
+                    if($role == "employee") {
+                        ?>
+                            <a id="admin" href="index.php?page=admin&role=2">
+                                <li>Medarbejder indgang</li>
+                            </a>
+                        <?php
+                    } 
                 } else {
                     ?>
                     <a href="index.php?page=form&forms=login">
                         <li>Login</li>
                     </a>
-                    <?php
-                }     
-                if (!$logged) {
-                    ?>
-                <a href="index.php?page=form&form=register">
-                    <li>Ny bruger</li>
-                </a>
-                <?php
-                }
-                if($role == "admin") {
-                ?>
-                    <a id="admin" href="index.php?page=admin">
-                        <li>Admin</li>
+                    <a href="index.php?page=form&form=register">
+                        <li>Ny bruger</li>
                     </a>
                 <?php
-                }
-                if($role == "employee") {
-                    ?>
-                        <a id="admin" href="index.php?page=admin&role=2">
-                            <li>Employee</li>
-                        </a>
-                    <?php
                 } 
-
                 $cartArr = DB::getItemsLimitedAndOrdered("carts", 1, "time", true) ?? null;
                 $cart = count($cartArr) > 0 ? $cartArr[0] : null;
                 $cartId = $cart ? $cart->id : null;
@@ -115,7 +110,7 @@
         ?>
             <p class="greeting">                    
         <?php 
-            echo "Hello " . $user . "!";
+            echo "Hej " . $user . "!";
         ?>
             </p>
         <?php      

@@ -25,6 +25,14 @@
             <input type="text" class="form-control" name="lName" placeholder="<?=$user->lName?>">
         </div>
         <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="uName" placeholder="<?=$user->userName?>">
+        </div>
+        <div class="form-group">
+            <label>Nyt password</label>
+            <input type="text" class="form-control" name="pWord">
+        </div>
+        <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" name="email" placeholder="<?=$user->email?>">
         </div>
@@ -53,7 +61,7 @@
                 <input type="text" id="e_role_display" disabled>
             </div>        
         </div>
-        <button onclick="formSubmit( this, 'users', 'edit')" type="submit" id="<?=$id?>" class="btn btn-primary">Submit</button>
+        <button onclick="formSubmit( this, 'users', 'edit')"  id="<?=$id?>" class="btn btn-primary">Submit</button>
     </form>
     <?php
         } else {

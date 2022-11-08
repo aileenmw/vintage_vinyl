@@ -24,6 +24,10 @@ function deleteItem (el) {
                                         window.location.reload();
                                     }
                                 });                           
+                        } else {
+                            swal("Noget gik galt", {
+                                icon: "error"
+                            })
                         }                  
                     });
             } else {
@@ -229,6 +233,7 @@ function editItem(el, type) {
         type: type
     },
     function(data){
+        alert(data);
             if ( data == "1") {
                 alert("Ændringerne er gemt");
             } else {
@@ -260,12 +265,11 @@ function formSubmit(el, type, action) {
     var form = $(el).closest("form");
     var formInput = $(form).serializeArray();
     var jsonData = JSON.stringify(formInput);
-
     $.post( "admin/handlers/" + action + "_" + type + ".php", { 
         formData: jsonData,
         id: $id
      }).done(function(data) {        
-
+        alert(data);
         if ( data == "1") {
             alert("Ændringerne er gemt");
         } else {

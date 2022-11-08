@@ -51,6 +51,7 @@ if ( isset($_POST['submit'])) {
 <div class="form_wrapper">
     <form action=""  class="form register" method="post">
         <h1 class="form_h1"><?php echo $msg; ?></h1>
+        <h4><?=password_hash('124', PASSWORD_DEFAULT)?></h4>
         <input type="text" name="fname" placeholder="Fornavn"><br>
         <input type="text" name="lname" placeholder="Efternavn"><br>
         <input type="text" name="uname" placeholder="Brugernavn" required><br>
