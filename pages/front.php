@@ -56,6 +56,6 @@
 
         God fornøjelse!<br><br>
 
-        <span class="names">Markus og Verner</span>
+        <span class="names">Bitten og Verner</span>
     </p>
 </div>

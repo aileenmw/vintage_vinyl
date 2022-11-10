@@ -142,6 +142,7 @@ main{
 .content p{
     font-family: 'Baloo Thambi', cursive;
     width: 50%;
+    padding-top: 5%;
     text-align: center;
     margin: 15% auto;
     margin-bottom: 5%;
